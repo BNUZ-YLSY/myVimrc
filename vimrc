@@ -82,7 +82,7 @@ set ruler
 set wildmenu
 
 vmap <C-c> "+y
-map <C-F1> :NERDTreeToggle
+map <f3> :NERDTreeToggle<CR>
 imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
@@ -110,3 +110,10 @@ endfunction
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Yggdroot/indentLine'
+Bundle 'scrooloose/nerdcommenter'
+
+"YCM_Settings
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+let g:syntastic_cpp_compiler='g++' "change the compiler to 'g++' to support c++11
+let g:syntastic_cpp_compiler_options='-std=c++11 -stdlib=libc++'  "set the options of g++ to support c++11
