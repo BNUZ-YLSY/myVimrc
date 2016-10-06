@@ -2,8 +2,8 @@
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 "
@@ -61,7 +61,13 @@ au BufWrite /private/etc/pw.* set nowritebackup
 execute pathogen#infect()
 syntax on
 " filetype plugin indent on
-colorscheme desert
+
+" theme
+set background=dark
+colorscheme solarized
+"colorscheme desert
+set guifont=Source_Code_Pro:h13
+
 set hls
 set nu
 set tabstop=8
@@ -107,13 +113,26 @@ function! ClosePair(char)
 endfunction
 
 "Vundle管理的插件
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Yggdroot/indentLine'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'bling/vim-airline'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'altercation/vim-colors-solarized'
 
 "YCM_Settings
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:syntastic_cpp_compiler='g++' "change the compiler to 'g++' to support c++11
 let g:syntastic_cpp_compiler_options='-std=c++11 -stdlib=libc++'  "set the options of g++ to support c++11
+
+"copy and paste
+vmap <Leader>y "+y
+vmap <Leader>p "+p
+nmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader>P "+P
+
+" default width and height
+set lines=27 columns=100
