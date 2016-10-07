@@ -2,8 +2,8 @@
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim/
-call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin('~/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 "
@@ -64,6 +64,7 @@ syntax on
 
 " theme
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 "colorscheme desert
 set guifont=Source_Code_Pro:h13
@@ -98,7 +99,7 @@ autocmd FileType xml setlocal sw=4
 "自动补全
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
+:inoremap { {}<ESC>i
 :inoremap } <c-r>=ClosePair('}')<CR>
 :inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePair(']')<CR>
@@ -120,6 +121,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-airline'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'mattn/emmet-vim'
 
 "YCM_Settings
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -136,3 +138,7 @@ nmap <Leader>P "+P
 
 " default width and height
 set lines=27 columns=100
+
+" Emmet (C-y ,)
+autocmd filetype html,css EmmetInstall
+
