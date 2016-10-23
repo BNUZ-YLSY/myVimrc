@@ -21,6 +21,8 @@ This file is a configuration for my vim editor, before using it, please install 
 6. Done!
 
 #KeyMap
-`<F3>` -> switch the *NERDTree* Plugin to on or off.
-`<C-y>` `,` -> Emmet trigger
-`<C-n>` -> Multiple edit
+- `<F3>` -> switch the *NERDTree* Plugin to on or off.
+- `<C-y>` `,` -> Emmet trigger
+- `<C-n>` -> Multiple edit
+- `<F8>` -> enable markdown preview
+- `<F9>` -> disable markdwon preview
