@@ -19,7 +19,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 
 "Vundle管理的插件
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdcommenter'
@@ -37,6 +37,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'leafgarland/typescript-vim'
 
 
 " All of your Plugins must be added before the following line
@@ -111,6 +112,11 @@ autocmd FileType xml,python,groovy,javascript setlocal sw=4
 autocmd FileType groovy setlocal cindent
 autocmd FileType shell,yaml,conf,json setlocal sw=2
 
+" for typescript-vim
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+autocmd FileType typescript :setlocal makeprg=tsc " find the tsconfig.json to compile
+
 "自动补全
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
@@ -133,9 +139,14 @@ let g:vim_markdown_frontmatter=1
 
 "YCM_Settings
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:syntastic_cpp_compiler='g++' "change the compiler to 'g++' to support c++11
 let g:syntastic_cpp_compiler_options='-std=c++11 -stdlib=libc++'  "set the options of g++ to support c++11
+" YCM with TypeScript
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
