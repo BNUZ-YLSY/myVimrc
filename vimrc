@@ -26,7 +26,8 @@ Plugin 'scrooloose/nerdcommenter'
 "markdown语法高亮
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'iamcco/markdown-preview.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -34,10 +35,12 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 
 " All of your Plugins must be added before the following line
@@ -78,9 +81,11 @@ syntax on
 
 " theme
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+" let g:solarized_termcolors=256
+" colorscheme solarized
 "colorscheme desert
+colorscheme gruvbox 
+let g:gruvbox_contrast_dark="hard"
 set guifont=Source_Code_Pro:h13
 
 set hls
@@ -108,9 +113,9 @@ imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
-autocmd FileType xml,python,groovy,javascript setlocal sw=4
+autocmd FileType xml,python,groovy,javascript,shell,bash,sh setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType shell,yaml,conf,json setlocal sw=2
+autocmd FileType yaml,conf,json setlocal sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -180,3 +185,6 @@ nmap <c-w>] :vertical resize +5<CR>
 
 " improve performance
 set lazyredraw
+
+" airline realted
+let g:airline#extensions#tabline#enabled = 1
