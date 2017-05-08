@@ -41,6 +41,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+" session enhancement
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+" Asynchronous Lint Engine
+Plugin 'w0rp/ale'
 
 
 " All of your Plugins must be added before the following line
@@ -188,3 +193,6 @@ set lazyredraw
 
 " airline realted
 let g:airline#extensions#tabline#enabled = 1
+
+" makes the % command work better
+packadd matchit
