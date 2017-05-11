@@ -46,7 +46,7 @@ Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 " Asynchronous Lint Engine
 Plugin 'w0rp/ale'
-
+Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -118,9 +118,9 @@ imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
-autocmd FileType xml,python,groovy,javascript,shell,bash,sh setlocal sw=4
+autocmd FileType xml,python,groovy,shell,bash,sh setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType yaml,conf,json setlocal sw=2
+autocmd FileType yaml,conf,json,javascript setlocal sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -196,3 +196,12 @@ let g:airline#extensions#tabline#enabled = 1
 
 " makes the % command work better
 packadd matchit
+
+" ALE setting
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\   'typescript': ['tslint']
+\}
