@@ -120,7 +120,7 @@ autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
 autocmd FileType xml,python,groovy,shell,bash,sh setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType yaml,conf,json,javascript setlocal sw=2
+autocmd FileType yaml,conf,json,javascript,html,vue setlocal sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -157,6 +157,8 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_python_interpreter = 'c:/Python27/python'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -192,7 +194,11 @@ nmap <c-w>] :vertical resize +5<CR>
 set lazyredraw
 
 " airline realted
+let g:airline_theme="wombat"
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+set encoding=utf-8
+set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 " makes the % command work better
 packadd matchit
