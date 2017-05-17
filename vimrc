@@ -47,6 +47,7 @@ Plugin 'xolox/vim-misc'
 " Asynchronous Lint Engine
 Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -128,21 +129,21 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType typescript :setlocal makeprg=tsc " find the tsconfig.json to compile
 
 "自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-            return "\<Right>"
-    else
-            return a:char
-    endif
-endfunction
+" :inoremap ( ()<ESC>i
+" :inoremap ) <c-r>=ClosePair(')')<CR>
+" :inoremap { {}<ESC>i
+" :inoremap } <c-r>=ClosePair('}')<CR>
+" :inoremap [ []<ESC>i
+" :inoremap ] <c-r>=ClosePair(']')<CR>
+" :inoremap " ""<ESC>i
+" :inoremap ' ''<ESC>i
+" function! ClosePair(char)
+    " if getline('.')[col('.') - 1] == a:char
+            " return "\<Right>"
+    " else
+            " return a:char
+    " endif
+" endfunction
 
 "markdown-setting: YAML
 let g:vim_markdown_frontmatter=1
