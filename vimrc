@@ -47,6 +47,7 @@ Plugin 'xolox/vim-misc'
 " Asynchronous Lint Engine
 Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -120,7 +121,7 @@ autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
 autocmd FileType xml,python,groovy,shell,bash,sh,html setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType yaml,conf,json,javascript setlocal sw=2
+autocmd FileType yaml,conf,json,javascript,html,vue,markdown setlocal sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -128,21 +129,21 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType typescript :setlocal makeprg=tsc " find the tsconfig.json to compile
 
 "自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-            return "\<Right>"
-    else
-            return a:char
-    endif
-endfunction
+" :inoremap ( ()<ESC>i
+" :inoremap ) <c-r>=ClosePair(')')<CR>
+" :inoremap { {}<ESC>i
+" :inoremap } <c-r>=ClosePair('}')<CR>
+" :inoremap [ []<ESC>i
+" :inoremap ] <c-r>=ClosePair(']')<CR>
+" :inoremap " ""<ESC>i
+" :inoremap ' ''<ESC>i
+" function! ClosePair(char)
+    " if getline('.')[col('.') - 1] == a:char
+            " return "\<Right>"
+    " else
+            " return a:char
+    " endif
+" endfunction
 
 "markdown-setting: YAML
 let g:vim_markdown_frontmatter=1
@@ -157,6 +158,8 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_python_interpreter = 'c:/Python27/python'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -192,7 +195,11 @@ nmap <c-w>] :vertical resize +5<CR>
 set lazyredraw
 
 " airline realted
+let g:airline_theme="wombat"
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+set encoding=utf-8
+set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 " makes the % command work better
 packadd matchit
@@ -205,3 +212,29 @@ let g:ale_linters = {
 \   'javascript': ['standard'],
 \   'typescript': ['tslint']
 \}
+
+" Python common commenet 
+function HeaderPython()
+    call setline(1, "# !/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+
+
+if has('win32')
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+    set encoding=utf-8
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+    set fileencoding=utf-8 " 新建文件使用的编码
+
+    " 解决菜单乱码
+    set langmenu=zh_CN
+    let $LANG = 'zh_CN.UTF-8'
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
+
