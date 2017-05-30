@@ -118,7 +118,7 @@ imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
-autocmd FileType xml,python,groovy,shell,bash,sh setlocal sw=4
+autocmd FileType xml,python,groovy,shell,bash,sh,html setlocal sw=4
 autocmd FileType groovy setlocal cindent
 autocmd FileType yaml,conf,json,javascript setlocal sw=2
 
@@ -176,7 +176,7 @@ nmap <Leader>P "+P
 set lines=27 columns=100
 
 " Emmet (C-y ,)
-autocmd filetype html,css EmmetInstall
+autocmd filetype html,css,vue EmmetInstall
 
 " let the markdown files link normal
 let g:vim_markdown_conceal = 0
