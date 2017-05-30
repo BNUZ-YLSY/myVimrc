@@ -121,7 +121,7 @@ autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
 autocmd FileType xml,python,groovy,shell,bash,sh setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType yaml,conf,json,javascript,html,vue setlocal sw=2
+autocmd FileType yaml,conf,json,javascript,html,vue,markdown setlocal sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -212,3 +212,29 @@ let g:ale_linters = {
 \   'javascript': ['standard'],
 \   'typescript': ['tslint']
 \}
+
+" Python common commenet 
+function HeaderPython()
+    call setline(1, "# !/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+
+
+if has('win32')
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+    set encoding=utf-8
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+    set fileencoding=utf-8 " 新建文件使用的编码
+
+    " 解决菜单乱码
+    set langmenu=zh_CN
+    let $LANG = 'zh_CN.UTF-8'
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
+
