@@ -25,7 +25,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdcommenter'
 "markdown语法高亮
 Plugin 'plasticboy/vim-markdown'
-"Plugin 'iamcco/markdown-preview.vim'
+Plugin 'iamcco/markdown-preview.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "snipmate
@@ -48,6 +48,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/vim-easy-align'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -166,7 +167,9 @@ nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
 imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
 nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
 imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
-
+let g:mkdp_path_to_chrome = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+let g:mkdp_auto_close = 1
+let g:mkdp_auto_open = 1
 
 "copy and paste
 vmap <Leader>y "+y
@@ -236,5 +239,20 @@ if has('win32')
     let $LANG = 'zh_CN.UTF-8'
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
+
+    " Disable the alt/meta (<M-*>) mapping on the Windows menu.
+    set winaltkeys=no
 endif
 
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Auto-paris fly mode
+let g:AutoPairsFlyMode = 1
+
+" Easy search the select content
+vnoremap // y/<c-r>"<cr>
