@@ -49,6 +49,9 @@ Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'easymotion/vim-easymotion'
+" Themes
+Plugin 'sjl/badwolf'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -91,8 +94,9 @@ set background=dark
 " let g:solarized_termcolors=256
 " colorscheme solarized
 "colorscheme desert
-colorscheme gruvbox 
-let g:gruvbox_contrast_dark="hard"
+" colorscheme gruvbox 
+" let g:gruvbox_contrast_dark="hard"
+colorscheme badwolf
 set guifont=Source_Code_Pro:h13
 
 set hls
@@ -115,7 +119,6 @@ set ruler
 set wildmenu
 
 vmap <C-c> "+y
-map <f3> :NERDTreeToggle<CR>
 imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
@@ -179,16 +182,13 @@ vmap <Leader>P "+P
 nmap <Leader>P "+P
 
 " default width and height
-set lines=27 columns=100
+" set lines=27 columns=100
 
 " Emmet (C-y ,)
 autocmd filetype html,css EmmetInstall
 
 " let the markdown files link normal
 let g:vim_markdown_conceal = 0
-
-" Comment with one Space
-let g:NERDSpaceDelims=1
 
 " vertical split resize
 nmap <c-w>[ :vertical resize -5<CR>
@@ -198,7 +198,8 @@ nmap <c-w>] :vertical resize +5<CR>
 set lazyredraw
 
 " airline realted
-let g:airline_theme="wombat"
+" let g:airline_theme="wombat"
+let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 set encoding=utf-8
@@ -252,7 +253,74 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Auto-paris fly mode
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 0
 
 " Easy search the select content
 vnoremap // y/<c-r>"<cr>
+
+" CTRLP ignore
+let g:ctrlp_custom_ignore = {
+  \ 'dir': 'node_modules'
+  \ }
+
+map <f3> :NERDTreeToggle<CR>
+" Comment with one Space
+let g:NERDSpaceDelims=1
+" Ignore *.pyc
+let NERDTreeIgnore = ['\.pyc$']
+" NERDCommenter for vue settings
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+let g:vue_disable_pre_processors=1
+
+
+" Vim general
+set nofoldenable
+
+" ==================== Easy Motion ====================
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+" nmap <space> <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap <space>s <Plug>(easymotion-overwin-f2)
+
+" <space>f{char} to move to {char}
+map  <space>f <Plug>(easymotion-bd-f)
+nmap <space>f <Plug>(easymotion-overwin-f)
+
+" Move to line
+map <space>L <Plug>(easymotion-bd-jk)
+nmap <space>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <space>w <Plug>(easymotion-bd-w)
+nmap <space>w <Plug>(easymotion-overwin-w)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <space>j <Plug>(easymotion-j)
+map <space>k <Plug>(easymotion-k)
+" ==================== Easy Motion ====================
