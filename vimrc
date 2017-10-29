@@ -329,4 +329,3 @@ Plugin 'xolox/vim-easytags'
 Plugin 'vim-scripts/taglist.vim'
 noremap <F2> :TlistToggle<CR>
 " ==================== Tag List ====================
->>>>>>> 6bf365c5bf7eced6ef3777e73580a19ffb62bfed
