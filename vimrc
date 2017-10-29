@@ -256,3 +256,6 @@ let g:AutoPairsFlyMode = 1
 
 " Easy search the select content
 vnoremap // y/<c-r>"<cr>
+
+" ctrlp ignore
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
