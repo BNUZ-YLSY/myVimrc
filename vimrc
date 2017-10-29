@@ -132,23 +132,6 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType typescript :setlocal makeprg=tsc " find the tsconfig.json to compile
 
-"自动补全
-" :inoremap ( ()<ESC>i
-" :inoremap ) <c-r>=ClosePair(')')<CR>
-" :inoremap { {}<ESC>i
-" :inoremap } <c-r>=ClosePair('}')<CR>
-" :inoremap [ []<ESC>i
-" :inoremap ] <c-r>=ClosePair(']')<CR>
-" :inoremap " ""<ESC>i
-" :inoremap ' ''<ESC>i
-" function! ClosePair(char)
-    " if getline('.')[col('.') - 1] == a:char
-            " return "\<Right>"
-    " else
-            " return a:char
-    " endif
-" endfunction
-
 "markdown-setting: YAML
 let g:vim_markdown_frontmatter=1
 
@@ -324,3 +307,27 @@ let g:EasyMotion_smartcase = 1
 map <space>j <Plug>(easymotion-j)
 map <space>k <Plug>(easymotion-k)
 " ==================== Easy Motion ====================
+
+" ==================== Auto Format ====================
+Plugin 'Chiel92/vim-autoformat'
+noremap <F4> :Autoformat<CR>
+let g:formatter_yapf_style = 'pep8'
+" ==================== Auto Format ====================
+
+" ==================== Code Folding ====================
+Plugin 'arecarn/vim-fold-cycle'
+Plugin 'pseewald/vim-anyfold'
+let g:fold_cycle_default_mapping = 0 "disable default mappings
+nmap <Tab><Tab> <Plug>(fold-cycle-open)
+nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
+autocmd Filetype python let b:anyfold_activate=1
+set foldlevel=0
+" ==================== Code Folding ====================
+" ==================== Tags Generator ====================
+" Use ^] to jump to definiation
+Plugin 'xolox/vim-easytags'
+" ==================== Tags Generator ====================
+" ==================== Tag List ====================
+Plugin 'vim-scripts/taglist.vim'
+noremap <F2> :TlistToggle<CR>
+" ==================== Tag List ====================
