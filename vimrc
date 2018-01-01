@@ -28,11 +28,14 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" ==================== Snippets ====================
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" ==================== Snippets ====================
+
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
@@ -146,7 +149,8 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_server_python_interpreter = 'c:/Python27/python'
+" let g:ycm_server_python_interpreter = 'c:/Python27/python'
+let g:ycm_server_python_interpreter = 'd:/Python27/python'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -197,7 +201,8 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
 \   'javascript': ['standard'],
-\   'typescript': ['tslint']
+\   'typescript': ['tslint'],
+\   'python': ['autopep8']
 \}
 
 " Python common commenet 
