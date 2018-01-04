@@ -246,7 +246,7 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 
 map <f3> :NERDTreeToggle<CR>
 " Comment with one Space
-let g:NERDSpaceDelims=1
+let g:NERDSpaceDelims=0
 " Ignore *.pyc
 let NERDTreeIgnore = ['\.pyc$']
 " NERDCommenter for vue settings
@@ -307,6 +307,7 @@ map <space>k <Plug>(easymotion-k)
 " ==================== Easy Motion ====================
 
 " ==================== Auto Format ====================
+Plugin 'vim-scripts/groovyindent-unix'
 Plugin 'Chiel92/vim-autoformat'
 noremap <F4> :Autoformat<CR>
 let g:formatter_yapf_style = 'pep8'
