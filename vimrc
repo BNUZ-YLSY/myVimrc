@@ -126,7 +126,7 @@ imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
 autocmd FileType make setlocal noet
-autocmd FileType xml,python,groovy,shell,bash,sh,html setlocal sw=4
+autocmd FileType xml,python,groovy,shell,bash,sh,html,dockerfile setlocal sw=4
 autocmd FileType groovy setlocal cindent
 autocmd FileType yaml,conf,json,javascript,html,vue,markdown setlocal sw=2
 
@@ -149,8 +149,7 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_server_python_interpreter = 'c:/Python27/python'
-let g:ycm_server_python_interpreter = 'd:/Python27/python'
+let g:ycm_server_python_interpreter = 'python'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -204,16 +203,6 @@ let g:ale_linters = {
 \   'typescript': ['tslint'],
 \   'python': ['autopep8']
 \}
-
-" Python common commenet 
-function HeaderPython()
-    call setline(1, "# !/usr/bin/env python")
-    call append(1, "# -*- coding: utf-8 -*-")
-    normal G
-    normal o
-    normal o
-endf
-autocmd bufnewfile *.py call HeaderPython()
 
 
 if has('win32')
@@ -322,8 +311,8 @@ let g:formatter_yapf_style = 'pep8'
 Plugin 'arecarn/vim-fold-cycle'
 Plugin 'pseewald/vim-anyfold'
 let g:fold_cycle_default_mapping = 0 "disable default mappings
-nmap <Tab><Tab> <Plug>(fold-cycle-open)
-nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
+nmap <+> <Plug>(fold-cycle-open)
+nmap <-> <Plug>(fold-cycle-close)
 autocmd Filetype python let b:anyfold_activate=1
 set foldlevel=0
 " ==================== Code Folding ====================
