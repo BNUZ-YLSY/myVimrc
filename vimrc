@@ -56,6 +56,8 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'easymotion/vim-easymotion'
 " Themes
 Plugin 'sjl/badwolf'
+" Optimization for Python
+Plugin 'python-mode/python-mode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
