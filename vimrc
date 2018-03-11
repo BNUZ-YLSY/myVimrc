@@ -126,6 +126,7 @@ vmap <C-c> "+y
 imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
+autocmd FileType feature setlocal shiftwidth=2
 autocmd FileType make setlocal noet
 autocmd FileType xml,python,groovy,shell,bash,sh,html setlocal sw=4
 autocmd FileType groovy setlocal cindent
@@ -152,7 +153,7 @@ let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
 " let g:ycm_server_python_interpreter = 'c:/Python27/python'
 " let g:ycm_server_python_interpreter = 'd:/Python27/python'
-let g:ycm_server_python_interpreter = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
