@@ -45,9 +45,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-" session enhancement
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-misc'
 " Asynchronous Lint Engine
 Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
@@ -321,8 +318,16 @@ set foldlevel=0
 " ==================== Tags Generator ====================
 " Use ^] to jump to definiation
 Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
 " ==================== Tags Generator ====================
 " ==================== Tag List ====================
 Plugin 'vim-scripts/taglist.vim'
 noremap <F2> :TlistToggle<CR>
 " ==================== Tag List ====================
+
+"Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
