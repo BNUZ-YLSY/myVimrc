@@ -53,6 +53,8 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'easymotion/vim-easymotion'
 " Themes
 Plugin 'sjl/badwolf'
+" Optimization for Python
+Plugin 'python-mode/python-mode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -123,6 +125,7 @@ vmap <C-c> "+y
 imap jk <Esc>
 
 autocmd FileType c,cpp setlocal cindent shiftwidth=4
+autocmd FileType feature setlocal shiftwidth=2
 autocmd FileType make setlocal noet
 autocmd FileType xml,python,groovy,shell,bash,sh,html,dockerfile setlocal sw=4
 autocmd FileType groovy setlocal cindent
@@ -148,7 +151,6 @@ endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_server_python_interpreter = 'python'
-"let g:ycm_server_python_interpreter = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
