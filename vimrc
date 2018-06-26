@@ -105,7 +105,7 @@ set guifont=Source_Code_Pro:h13
 set hls
 set nu
 set tabstop=8
-set shiftwidth=8
+set shiftwidth=4
 set softtabstop=8
 set smarttab
 set smartindent
@@ -124,12 +124,11 @@ set wildmenu
 vmap <C-c> "+y
 imap jk <Esc>
 
-autocmd FileType c,cpp setlocal cindent shiftwidth=4
+autocmd FileType c,cpp setlocal cindent
 autocmd FileType feature setlocal shiftwidth=2
 autocmd FileType make setlocal noet
-autocmd FileType xml,python,groovy,shell,bash,sh,html,dockerfile setlocal sw=4
 autocmd FileType groovy setlocal cindent
-autocmd FileType yaml,conf,json,javascript,html,vue,markdown setlocal sw=2
+autocmd FileType yaml,conf,json,javascript,vue,markdown setlocal cindent sw=2
 
 " for typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -150,7 +149,7 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_server_python_interpreter = 'python'
+let g:ycm_server_python_interpreter = 'python3'
 
 "MarkdownPreview-KeyMapping
 nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
@@ -204,6 +203,9 @@ let g:ale_linters = {
 \   'typescript': ['tslint'],
 \   'python': ['autopep8']
 \}
+" Fix files when they are saved.
+let g:ale_fix_on_save = 1
+let b:ale_fixers = ['prettier', 'eslint']
 
 
 if has('win32')
@@ -241,7 +243,7 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 
 map <f3> :NERDTreeToggle<CR>
 " Comment with one Space
-let g:NERDSpaceDelims=0
+let g:NERDSpaceDelims=1
 " Ignore *.pyc
 let NERDTreeIgnore = ['\.pyc$']
 " NERDCommenter for vue settings
@@ -326,6 +328,51 @@ Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/taglist.vim'
 noremap <F2> :TlistToggle<CR>
 " ==================== Tag List ====================
+
+" ==================== WeChat App ====================
+Plugin 'chemzqm/wxapp.vim'
+let g:neomake_wxml_enabled_makers = ['tidy', 'stylelint']
+let g:user_emmet_settings = {
+  \ 'wxss': {
+  \   'extends': 'css',
+  \ },
+  \ 'wxml': {
+  \   'extends': 'html',
+  \   'aliases': {
+  \     'div': 'view',
+  \     'span': 'text',
+  \   },
+  \  'default_attributes': {
+  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+  \     'navigator': [{'url': '', 'redirect': 'false'}],
+  \     'scroll-view': [{'bindscroll': ''}],
+  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+  \     'icon': [{'type': 'success', 'size': '23'}],
+  \     'progress': [{'precent': '0'}],
+  \     'button': [{'size': 'default'}],
+  \     'checkbox-group': [{'bindchange': ''}],
+  \     'checkbox': [{'value': '', 'checked': ''}],
+  \     'form': [{'bindsubmit': ''}],
+  \     'input': [{'type': 'text'}],
+  \     'label': [{'for': ''}],
+  \     'picker': [{'bindchange': ''}],
+  \     'radio-group': [{'bindchange': ''}],
+  \     'radio': [{'checked': ''}],
+  \     'switch': [{'checked': ''}],
+  \     'slider': [{'value': ''}],
+  \     'action-sheet': [{'bindchange': ''}],
+  \     'modal': [{'title': ''}],
+  \     'loading': [{'bindchange': ''}],
+  \     'toast': [{'duration': '1500'}],
+  \     'audio': [{'src': ''}],
+  \     'video': [{'src': ''}],
+  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+  \   }
+  \ },
+  \}
+" ==================== WeChat App ====================
+
+Plugin 'martinda/Jenkinsfile-vim-syntax'
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
