@@ -222,7 +222,12 @@ nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
 imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
 nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
 imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
-let g:mkdp_path_to_chrome = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+if has('win32')
+    let g:mkdp_path_to_chrome = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+endif
+if has('macunix')
+    let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+endif
 let g:mkdp_auto_close = 1
 let g:mkdp_auto_open = 1
 
