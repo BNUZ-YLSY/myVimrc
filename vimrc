@@ -13,13 +13,29 @@ endif
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/L9'
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/nerdtree'
+" Post-update hooks to compile the YCM
+" ==================== YouCompleteMe ====================
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --go-completer --js-completer --java-completer --clang-completer
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" ==================== YouCompleteMe ====================
+
 Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+autocmd! User nerdtree echom 'NERDTree is now loaded.'
 Plug 'scrooloose/nerdcommenter'
 "markdown语法高亮
 Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+autocmd! User markdown-preview.vim echom 'MarkdownPreview is now loaded.'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " ==================== Snippets ====================
@@ -47,7 +63,8 @@ Plug 'easymotion/vim-easymotion'
 " Themes
 Plug 'sjl/badwolf'
 " Optimization for Python
-Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'for': 'python' }
+autocmd! User python-mode echom 'Python-Mode is now loaded.'
 
 " ==================== Auto Format ====================
 Plug 'vim-scripts/groovyindent-unix'
@@ -71,7 +88,7 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 " ==================== Tags Generator ====================
 " ==================== Tag List ====================
-Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/taglist.vim', { 'on': 'TlistToggle' }
 noremap <F2> :TlistToggle<CR>
 " ==================== Tag List ====================
 
