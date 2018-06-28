@@ -1,76 +1,131 @@
 "set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-
+" Initialize for the vim-plug
 if has('win32')
-    set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim/
-    call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+    " set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim/
+    call plug#begin('$USERPROFILE/vimfiles/bundle/')
 else
-    set rtp+=~/.vim/bundle/Vundle.vim/
-    call vundle#begin('~/.vim/bundle/')
+    " set rtp+=~/.vim/bundle/Vundle.vim/
+    call plug#begin('~/.vim/bundle/')
 endif
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/L9'
 
-"Vundle管理的插件
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdcommenter'
 "markdown语法高亮
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " ==================== Snippets ====================
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ==================== Snippets ====================
 
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'leafgarland/typescript-vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Asynchronous Lint Engine
-Plugin 'w0rp/ale'
-Plugin 'posva/vim-vue'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'easymotion/vim-easymotion'
+Plug 'w0rp/ale'
+Plug 'posva/vim-vue'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
+Plug 'easymotion/vim-easymotion'
 " Themes
-Plugin 'sjl/badwolf'
+Plug 'sjl/badwolf'
 " Optimization for Python
-Plugin 'python-mode/python-mode'
+Plug 'python-mode/python-mode'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" ==================== Auto Format ====================
+Plug 'vim-scripts/groovyindent-unix'
+Plug 'Chiel92/vim-autoformat'
+noremap <F4> :Autoformat<CR>
+let g:formatter_yapf_style = 'pep8'
+" ==================== Auto Format ====================
+
+" ==================== Code Folding ====================
+Plug 'arecarn/vim-fold-cycle'
+Plug 'pseewald/vim-anyfold'
+let g:fold_cycle_default_mapping = 0 "disable default mappings
+nmap <+> <Plug>(fold-cycle-open)
+nmap <-> <Plug>(fold-cycle-close)
+autocmd Filetype python let b:anyfold_activate=1
+set foldlevel=0
+" ==================== Code Folding ====================
+" ==================== Tags Generator ====================
+" Use ^] to jump to definiation
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+" ==================== Tags Generator ====================
+" ==================== Tag List ====================
+Plug 'vim-scripts/taglist.vim'
+noremap <F2> :TlistToggle<CR>
+" ==================== Tag List ====================
+
+" ==================== WeChat App ====================
+Plug 'chemzqm/wxapp.vim'
+let g:neomake_wxml_enabled_makers = ['tidy', 'stylelint']
+let g:user_emmet_settings = {
+  \ 'wxss': {
+  \   'extends': 'css',
+  \ },
+  \ 'wxml': {
+  \   'extends': 'html',
+  \   'aliases': {
+  \     'div': 'view',
+  \     'span': 'text',
+  \   },
+  \  'default_attributes': {
+  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+  \     'navigator': [{'url': '', 'redirect': 'false'}],
+  \     'scroll-view': [{'bindscroll': ''}],
+  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+  \     'icon': [{'type': 'success', 'size': '23'}],
+  \     'progress': [{'precent': '0'}],
+  \     'button': [{'size': 'default'}],
+  \     'checkbox-group': [{'bindchange': ''}],
+  \     'checkbox': [{'value': '', 'checked': ''}],
+  \     'form': [{'bindsubmit': ''}],
+  \     'input': [{'type': 'text'}],
+  \     'label': [{'for': ''}],
+  \     'picker': [{'bindchange': ''}],
+  \     'radio-group': [{'bindchange': ''}],
+  \     'radio': [{'checked': ''}],
+  \     'switch': [{'checked': ''}],
+  \     'slider': [{'value': ''}],
+  \     'action-sheet': [{'bindchange': ''}],
+  \     'modal': [{'title': ''}],
+  \     'loading': [{'bindchange': ''}],
+  \     'toast': [{'duration': '1500'}],
+  \     'audio': [{'src': ''}],
+  \     'video': [{'src': ''}],
+  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+  \   }
+  \ },
+  \}
+" ==================== WeChat App ====================
+
+Plug 'martinda/Jenkinsfile-vim-syntax'
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 "-----------------------------------------------------------------------------------
 
 " Configuration file for vim
@@ -85,12 +140,6 @@ set backspace=2		" more powerful backspacing
 au BufWrite /private/tmp/crontab.* set nowritebackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup
-
-"Here is for my personal settings
-
-execute pathogen#infect()
-syntax on
-" filetype plugin indent on
 
 " theme
 set background=dark
@@ -303,76 +352,6 @@ map <space>j <Plug>(easymotion-j)
 map <space>k <Plug>(easymotion-k)
 " ==================== Easy Motion ====================
 
-" ==================== Auto Format ====================
-Plugin 'vim-scripts/groovyindent-unix'
-Plugin 'Chiel92/vim-autoformat'
-noremap <F4> :Autoformat<CR>
-let g:formatter_yapf_style = 'pep8'
-" ==================== Auto Format ====================
-
-" ==================== Code Folding ====================
-Plugin 'arecarn/vim-fold-cycle'
-Plugin 'pseewald/vim-anyfold'
-let g:fold_cycle_default_mapping = 0 "disable default mappings
-nmap <+> <Plug>(fold-cycle-open)
-nmap <-> <Plug>(fold-cycle-close)
-autocmd Filetype python let b:anyfold_activate=1
-set foldlevel=0
-" ==================== Code Folding ====================
-" ==================== Tags Generator ====================
-" Use ^] to jump to definiation
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-" ==================== Tags Generator ====================
-" ==================== Tag List ====================
-Plugin 'vim-scripts/taglist.vim'
-noremap <F2> :TlistToggle<CR>
-" ==================== Tag List ====================
-
-" ==================== WeChat App ====================
-Plugin 'chemzqm/wxapp.vim'
-let g:neomake_wxml_enabled_makers = ['tidy', 'stylelint']
-let g:user_emmet_settings = {
-  \ 'wxss': {
-  \   'extends': 'css',
-  \ },
-  \ 'wxml': {
-  \   'extends': 'html',
-  \   'aliases': {
-  \     'div': 'view',
-  \     'span': 'text',
-  \   },
-  \  'default_attributes': {
-  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
-  \     'navigator': [{'url': '', 'redirect': 'false'}],
-  \     'scroll-view': [{'bindscroll': ''}],
-  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
-  \     'icon': [{'type': 'success', 'size': '23'}],
-  \     'progress': [{'precent': '0'}],
-  \     'button': [{'size': 'default'}],
-  \     'checkbox-group': [{'bindchange': ''}],
-  \     'checkbox': [{'value': '', 'checked': ''}],
-  \     'form': [{'bindsubmit': ''}],
-  \     'input': [{'type': 'text'}],
-  \     'label': [{'for': ''}],
-  \     'picker': [{'bindchange': ''}],
-  \     'radio-group': [{'bindchange': ''}],
-  \     'radio': [{'checked': ''}],
-  \     'switch': [{'checked': ''}],
-  \     'slider': [{'value': ''}],
-  \     'action-sheet': [{'bindchange': ''}],
-  \     'modal': [{'title': ''}],
-  \     'loading': [{'bindchange': ''}],
-  \     'toast': [{'duration': '1500'}],
-  \     'audio': [{'src': ''}],
-  \     'video': [{'src': ''}],
-  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
-  \   }
-  \ },
-  \}
-" ==================== WeChat App ====================
-
-Plugin 'martinda/Jenkinsfile-vim-syntax'
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
